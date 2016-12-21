@@ -173,6 +173,7 @@
     <Compile Include="Models\Administration\ChangePIN.cs" />
     <Compile Include="Models\Administration\UserData.cs" />
     <Compile Include="Models\Administration\Logic.cs" />
+    <Compile Include="Models\Administration\UsersList.cs" />
     <Compile Include="Models\BusinessLogic.cs" />
     <Compile Include="Models\Documents\Logic.cs" />
     <Compile Include="Models\EnitityModel.cs" />

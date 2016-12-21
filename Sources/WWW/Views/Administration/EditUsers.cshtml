@@ -1,7 +1,7 @@
 ﻿@using WWW = BlueBit.HR.Docs.WWW;
 @using BL = BlueBit.HR.Docs.BL;
 @using PagedList.Mvc;
-@model PagedList.IPagedList<WWW.Models.Administration.UserData>
+@model WWW.Models.Administration.UsersList
 @{
     ViewBag.Title = "Administracja";
 }
@@ -19,35 +19,46 @@
     </section>
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditUsers", "Administration", FormMethod.Post))
 {   
     <div align="center">
     <table>
         <tr>
+            <th/>
+            <th colspan="4">
+                @Html.TextBoxFor(m => m.Filter, new { @style = "width:300px", @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_IDENTIFIER })
+                <input type="submit" value="Filtruj" />
+            </th>
+        </tr>
+        <tr>
             <th>&nbsp;</th>
             <th align="left">
-                @Html.ActionLink("Identyfikator", "EditUsers", new { sortOrder = "Identifier", currentSortOrder = ViewBag.CurrentSort })
+                @Html.ActionLink("Identyfikator", "EditUsers", new { sortOrder = "Identifier", currentSortOrder = ViewBag.CurrentSort, filter = Model.Filter })
             </th>
             <th align="left">
-                @Html.ActionLink("Nazwisko, Imię", "EditUsers", new { sortOrder = "FullName", currentSortOrder = ViewBag.CurrentSort })
+                @Html.ActionLink("Nazwisko, Imię", "EditUsers", new { sortOrder = "FullName", currentSortOrder = ViewBag.CurrentSort, filter = Model.Filter })
             </th>
             <th align="center">
-                @Html.ActionLink("PESEL", "EditUsers", new { sortOrder = "PESEL", currentSortOrder = ViewBag.CurrentSort })
+                @Html.ActionLink("PESEL", "EditUsers", new { sortOrder = "PESEL", currentSortOrder = ViewBag.CurrentSort, filter = Model.Filter })
             </th>
             <th align="center">
                 PIN
             </th>
             <th align="center">
-                @Html.ActionLink("A?", "EditUsers", new { sortOrder = "IsAdministrator", currentSortOrder = ViewBag.CurrentSort })
+                @Html.ActionLink("A?", "EditUsers", new { sortOrder = "IsAdministrator", currentSortOrder = ViewBag.CurrentSort, filter = Model.Filter })
             </th>
         </tr>
-        @foreach (var user in Model)
+        @foreach (var user in Model.List)
         {
                 <tr>
                 <td>
                 @if (user.IsFromDB)
                 {
                     @Html.ActionLink("Edytuj", "EditUser", new { ID = user.ID });
+                    if (user.CanDelete)
+                    {
+                        @Html.ActionLink("Usuń", "DeleteUser", new { ID = user.ID });
+                    }
                 }
                 else
                 {
@@ -76,8 +87,8 @@
         </tr>
         <tr>
             <td colspan="6" align="center">
-                @Html.PagedListPager(Model, page => Url.Action("EditUsers", new { page }))
-                Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount.
+                @Html.PagedListPager(Model.List, page => Url.Action("EditUsers", new { page }))
+                Strona @(Model.List.PageCount < Model.List.PageNumber ? 0 : Model.List.PageNumber) z @Model.List.PageCount.
             </td>
         </tr>
     </table>

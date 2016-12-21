@@ -147,6 +147,8 @@
     <Compile Include="Diagnostics\Extensions.cs" />
     <Compile Include="Diagnostics\Log.cs" />
     <Compile Include="Enviroment\WorkingDir.cs" />
+    <Compile Include="Extensions\DictionaryExt.cs" />
+    <Compile Include="Extensions\EnumerableExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

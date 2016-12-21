@@ -103,6 +103,14 @@ namespace BlueBit.HR.Docs.WWW
                 : businessCtx.Session.Employee.IsAdministrator;
         }
 
+        public bool IsUserCurrent(long id)
+        {
+            var businessCtx = BusinessContext;
+            return businessCtx == null
+                ? false
+                : businessCtx.Session.Employee.ID == id;
+        }
+
         public Tuple<string, bool?, DateTime?> GetUserInfo()
         {
             var identifier = HttpContext.Current.User.Identity.Name;

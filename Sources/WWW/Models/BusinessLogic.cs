@@ -38,6 +38,18 @@ namespace BlueBit.HR.Docs.WWW.Models
             });
         }
 
+        public bool DeleteEntity<T>(long id)
+            where T : class, BL.DataLayer.Entities.Commons.IObjectInDBWithID, new()
+        {
+            return BusinessContext.DoInTransactionWithResult(transaction =>
+            {
+                var session = transaction.DBSession;
+                var entity = session.Get<T>(id);
+                session.Delete(entity);
+                return true;
+            });
+        }
+
         public T GetEntity<T>(Expression<Func<T, bool>> expression)
             where T : class, BL.DataLayer.Entities.Commons.IObjectInDBWithID, new()
         {

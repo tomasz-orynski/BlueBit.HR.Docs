@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BlueBit.HR.Docs.BL.BusinessLayer.Extensions;
+using BlueBit.HR.Docs.BL.Extensions;
 
 namespace BlueBit.HR.Docs.WWW.Models.Administration
 {
@@ -29,13 +30,53 @@ namespace BlueBit.HR.Docs.WWW.Models.Administration
                         new BL.BusinessLayer.Services.Enviroment.GetUsersServiceContext(transaction)
                     ))
                 {
-                    var dbUsers = transaction.DBSession.QueryOver<BL.DataLayer.Entities.Employee>().List().ToDictionary(u=>u.Identifier);
-                    var adUsers = service.Execute();
-
-                    return adUsers
-                        .Select(u => dbUsers.ContainsKey(u.Identifier) ? new UserData(u, dbUsers[u.Identifier]) : new UserData(u))
+                    var app = MvcApplication.GetAppInstance();
+                    var adUsers = service.Execute().ToDictionary(_ => _.Identifier);
+                    var dbUsers = transaction.DBSession.QueryOver<BL.DataLayer.Entities.Employee>().List().ToDictionary(_ => _.Identifier);
+                    var identifiers = adUsers.Keys.Union(dbUsers.Keys).Distinct().ToList();
+                    var dict = new Dictionary<Tuple<bool, bool>, Func<Tuple<BL.BusinessLayer.Services.Enviroment.IUserInfo, BL.DataLayer.Entities.Employee>, UserData>>()
+                    {
+                        [Tuple.Create(true, true)] = _ => new UserData(_.Item1, _.Item2),
+                        [Tuple.Create(false, true)] = _ => new UserData(_.Item2),
+                        [Tuple.Create(true, false)] = _ => new UserData(_.Item1),
+                    };
+                    return identifiers
+                        .Select(_ => Tuple.Create(adUsers.GetOptValue(_), dbUsers.GetOptValue(_)))
+                        .Select(_ => dict[Tuple.Create(_.Item1!=null, _.Item2!=null)](_))
+                        .Select(_ =>
+                        {
+                            _.CanDelete = !app.IsUserCurrent(_.ID);
+                            return _;
+                        })
                         .ToList();
                 }
+            });
+        }
+
+        public bool DeleteUser(long id)
+        {
+            return BusinessContext.DoInTransactionWithResult(transaction =>
+            {
+                var session = transaction.DBSession;
+                var entity = session.Get<BL.DataLayer.Entities.Employee>(id);
+                session.QueryOver<BL.DataLayer.Entities.Session>()
+                    .Where(_ => _.Employee.ID == entity.ID)
+                    .List()
+                    .ForAll(s =>
+                    {
+                        session.QueryOver<BL.DataLayer.Entities.SessionDocumentGet>()
+                            .Where(_ => _.Session.ID == s.ID)
+                            .List()
+                            .ForAll(session.Delete);
+                        session.Delete(s);
+                    });
+                session.QueryOver<BL.DataLayer.Entities.DocumentWithData>()
+                    .Where(_ => _.PESEL == entity.PESEL)
+                    .List()
+                    .ForAll(session.Delete);
+
+                session.Delete(entity);
+                return true;
             });
         }
 

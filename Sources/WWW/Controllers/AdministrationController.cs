@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using BlueBit.HR.Docs.WWW.Models.Administration;
+using System.Collections.Generic;
 
 namespace BlueBit.HR.Docs.WWW.Controllers
 {
@@ -41,44 +43,20 @@ namespace BlueBit.HR.Docs.WWW.Controllers
         }
 
         [Authorize]
-        public ActionResult EditUsers(string sortOrder, string currentSortOrder, int? page)
+        public ActionResult EditUsers(string filter, string sortOrder, string currentSortOrder, int? page)
         {
             return _HandleAdminRequest(() => {
                 var logic = new Models.Administration.Logic();
-                var users = logic.GetUsers();
+                var users = logic.GetUsers().SortAndFilter(filter, sortOrder, currentSortOrder);
 
                 ViewBag.CurrentSort = sortOrder;
                 var pageSize = 10;
                 var pageNumber = page ?? 1;
 
-                switch (sortOrder)
-                {
-                    case "Identifier":
-                        if (sortOrder == currentSortOrder)
-                            return View(users.OrderByDescending(u => u.Identifier).ToPagedList(pageNumber, pageSize));
-                        else
-                            return View(users.OrderBy(u => u.Identifier).ToPagedList(pageNumber, pageSize));
-
-                    case "FullName":
-                        if (sortOrder == currentSortOrder)
-                            return View(users.OrderByDescending(u => u.FullName).ToPagedList(pageNumber, pageSize));
-                        else
-                            return View(users.OrderBy(u => u.FullName).ToPagedList(pageNumber, pageSize));
-
-                    case "PESEL":
-                        if (sortOrder == currentSortOrder)
-                            return View(users.OrderByDescending(u => u.PESEL).ToPagedList(pageNumber, pageSize));
-                        else
-                            return View(users.OrderBy(u => u.PESEL).ToPagedList(pageNumber, pageSize));
-
-                    case "IsAdministrator":
-                        if (sortOrder == currentSortOrder)
-                            return View(users.OrderByDescending(u => u.IsAdministrator).ToPagedList(pageNumber, pageSize));
-                        else
-                            return View(users.OrderBy(u => u.IsAdministrator).ToPagedList(pageNumber, pageSize));
-                }
-
-                return View(users.OrderByDescending(u => u.Identifier).ToPagedList(pageNumber, pageSize));
+                return View(new UsersList() {
+                    List = users.ToPagedList(pageNumber, pageSize),
+                    Filter = filter,
+                });
             });
         }
 
@@ -122,6 +100,18 @@ namespace BlueBit.HR.Docs.WWW.Controllers
                 return View(model);
             });
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult DeleteUser(long id)
+        {
+            return _HandleAdminRequest(() => {
+                var logic = new Models.Administration.Logic();
+                logic.DeleteUser(id);
+                return View("~/Views/Shared/Success.cshtml");
+            });
+        }
+
 
         [HttpGet]
         [Authorize]
