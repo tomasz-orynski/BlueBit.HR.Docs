@@ -1,0 +1,34 @@
+﻿@using BL = BlueBit.HR.Docs.BL;
+@using WWW = BlueBit.HR.Docs.WWW;
+@model WWW.Models.Home.LogOn
+
+@{
+    ViewBag.Title = "Logowanie...";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Logowanie do systemu…</h2>
+                <br />
+                <h3>Aby zalogować się do systemu wprowadź swój czterocyfrowy kod PIN, a następnie zatwierdź go.</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+@Html.ValidationSummary()
+@using (Html.BeginForm("LogOn", "Home", FormMethod.Post))
+{
+    <fieldset>
+    <p>
+        @Html.LabelFor(m => m.PIN, new { @class = "control-label" })
+        @Html.PasswordFor(m => m.PIN, new { @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX })
+        @Html.ValidationMessageFor(m => m.PIN, "*")
+    </p>
+    <p>&nbsp;</p>
+    <p>
+        <input type="submit" value="Zatwierdź" />
+    </p>
+    </fieldset>
+}

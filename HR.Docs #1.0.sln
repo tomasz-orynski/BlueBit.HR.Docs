@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{2044892E-12BA-4748-A8A9-C718E21C4EEB}"
+EndProject
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "DB", "Sources\DB\DB.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WWW", "Sources\WWW\WWW.csproj", "{AD2E3A10-FBDC-45AB-956F-EA6C02C8430F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{42B318C7-325D-421C-BC31-D4B73280D90D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL.Tests", "Tests\BL.Tests\BL.Tests.csproj", "{9F05F465-E8A4-41B0-8DBA-D369AB3F9535}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{062F76F6-A48E-44D3-9BD0-1D41D2501101}"
+	ProjectSection(SolutionItems) = preProject
+		HR.Docs #1.0.vsmdi = HR.Docs #1.0.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "Sources\BL\BL.csproj", "{E24A1F5E-8D56-4892-B685-67DEE0D7D8D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Data_", "_Data_", "{90C57617-57E8-4A5D-85F4-F23A371DB1E6}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\_Data_\Data.zip = Tests\_Data_\Data.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{22535B47-0BE0-4AB0-8D68-217D53E2883B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Sources\Setup\Setup.vdproj", "{007C9132-7740-4965-B3D0-91666BB70C3A}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = HR.Docs #1.0.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AD2E3A10-FBDC-45AB-956F-EA6C02C8430F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD2E3A10-FBDC-45AB-956F-EA6C02C8430F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD2E3A10-FBDC-45AB-956F-EA6C02C8430F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD2E3A10-FBDC-45AB-956F-EA6C02C8430F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F05F465-E8A4-41B0-8DBA-D369AB3F9535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F05F465-E8A4-41B0-8DBA-D369AB3F9535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F05F465-E8A4-41B0-8DBA-D369AB3F9535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F05F465-E8A4-41B0-8DBA-D369AB3F9535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E24A1F5E-8D56-4892-B685-67DEE0D7D8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E24A1F5E-8D56-4892-B685-67DEE0D7D8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E24A1F5E-8D56-4892-B685-67DEE0D7D8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E24A1F5E-8D56-4892-B685-67DEE0D7D8D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007C9132-7740-4965-B3D0-91666BB70C3A}.Debug|Any CPU.ActiveCfg = Debug
+		{007C9132-7740-4965-B3D0-91666BB70C3A}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {2044892E-12BA-4748-A8A9-C718E21C4EEB}
+		{AD2E3A10-FBDC-45AB-956F-EA6C02C8430F} = {2044892E-12BA-4748-A8A9-C718E21C4EEB}
+		{E24A1F5E-8D56-4892-B685-67DEE0D7D8D8} = {2044892E-12BA-4748-A8A9-C718E21C4EEB}
+		{007C9132-7740-4965-B3D0-91666BB70C3A} = {2044892E-12BA-4748-A8A9-C718E21C4EEB}
+		{9F05F465-E8A4-41B0-8DBA-D369AB3F9535} = {42B318C7-325D-421C-BC31-D4B73280D90D}
+		{062F76F6-A48E-44D3-9BD0-1D41D2501101} = {42B318C7-325D-421C-BC31-D4B73280D90D}
+		{90C57617-57E8-4A5D-85F4-F23A371DB1E6} = {42B318C7-325D-421C-BC31-D4B73280D90D}
+	EndGlobalSection
+EndGlobal

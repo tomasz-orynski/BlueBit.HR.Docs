@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Ładowanie pliku z danymi";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Ładowanie pliku z danymi…</h2>
+                <br />
+                <h3>Aby załadować plik ZIP z danymi wskaż ścieżkę do pliku, a następnie zatwierdź operację.</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+@using (Html.BeginForm("LoadData", "Administration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{  
+    <table width="100%">
+        <tr>
+            <td>
+            <label for="file">Plik z danymi:</label> 
+            </td><td>
+            <input type="file" name="file" id="file" style="width: 100%;" /> 
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align=center><input type="submit" value="Zatwierdź" /></td>
+        </tr>
+    </table>
+}

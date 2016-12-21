@@ -1,0 +1,49 @@
+﻿@using BL = BlueBit.HR.Docs.BL;
+@using WWW = BlueBit.HR.Docs.WWW;
+@model BlueBit.HR.Docs.WWW.Models.Administration.ChangePIN
+
+@{
+    ViewBag.Title = "Zmiana kodu PIN...";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Zmiana kodu PIN…</h2>
+                <br />
+                <h3>Aby zmienić kod PIN wprowadź kod bieżący, następnie podaj nową wartość i potwierdź ją.</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+@Html.ValidationSummary()
+@using (Html.BeginForm("ChangePIN", "Administration", FormMethod.Post))
+{
+    <fieldset>
+    <p>
+    @Html.LabelFor(m => m.ActualPIN, new { @class = "control-label" })
+    @Html.PasswordFor(m => m.ActualPIN, new { @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX })
+    @Html.ValidationMessageFor(m => m.ActualPIN, "*")
+    </p>
+    <p>
+    @Html.LabelFor(m => m.NewPIN, new { @class = "control-label" })
+    @Html.PasswordFor(m => m.NewPIN, new { @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX })
+    @Html.ValidationMessageFor(m => m.NewPIN, "*")
+    </p>
+    <p>
+    @Html.LabelFor(m => m.ConfirmPIN, new { @class = "control-label" })
+    @Html.PasswordFor(m => m.ConfirmPIN, new { @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX })
+    @Html.ValidationMessageFor(m => m.ConfirmPIN, "*")
+    </p>
+    <p>
+    @Html.LabelFor(m => m.IsLogonMailSend, new { @class = "control-label" })
+    @Html.CheckBoxFor(m => m.IsLogonMailSend)
+    @Html.ValidationMessageFor(m => m.IsLogonMailSend, "*")
+    </p>
+    <p>&nbsp;</p>
+    <p>
+    <input type="submit" value="Zatwierdź" />
+    </p>
+    </fieldset>
+}

@@ -1,0 +1,1 @@
+﻿ALTER TABLE T_DocumentsLoads ADD CONSTRAINT PK_DocumentsLoads PRIMARY KEY CLUSTERED (ID);

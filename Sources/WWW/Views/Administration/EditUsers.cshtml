@@ -1,0 +1,85 @@
+﻿@using WWW = BlueBit.HR.Docs.WWW;
+@using BL = BlueBit.HR.Docs.BL;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WWW.Models.Administration.UserData>
+@{
+    ViewBag.Title = "Administracja";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Edycja użytkowników.</h2>
+                <br />
+                <h3>Aby zarejestrować pracownika jako użytkownika systemu wybierz opcję utworzenia.<br />Jeśli chcesz zmienić dane użytkownika systemu wybierz opcję edycji.</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@using (Html.BeginForm())
+{   
+    <div align="center">
+    <table>
+        <tr>
+            <th>&nbsp;</th>
+            <th align="left">
+                @Html.ActionLink("Identyfikator", "EditUsers", new { sortOrder = "Identifier", currentSortOrder = ViewBag.CurrentSort })
+            </th>
+            <th align="left">
+                @Html.ActionLink("Nazwisko, Imię", "EditUsers", new { sortOrder = "FullName", currentSortOrder = ViewBag.CurrentSort })
+            </th>
+            <th align="center">
+                @Html.ActionLink("PESEL", "EditUsers", new { sortOrder = "PESEL", currentSortOrder = ViewBag.CurrentSort })
+            </th>
+            <th align="center">
+                PIN
+            </th>
+            <th align="center">
+                @Html.ActionLink("A?", "EditUsers", new { sortOrder = "IsAdministrator", currentSortOrder = ViewBag.CurrentSort })
+            </th>
+        </tr>
+        @foreach (var user in Model)
+        {
+                <tr>
+                <td>
+                @if (user.IsFromDB)
+                {
+                    @Html.ActionLink("Edytuj", "EditUser", new { ID = user.ID });
+                }
+                else
+                {
+                    @Html.ActionLink("Utworz", "CreateUser", new { Identifier = user.Identifier });
+                }
+                </td>
+                <td align="left">
+                @Html.DisplayFor(model => user.Identifier)
+                </td>
+                <td align="left">
+                @Html.DisplayFor(model => user.FullName)
+                </td>
+                <td align="center">
+                @Html.DisplayFor(model => user.PESEL)
+                </td>
+                <td align="center">
+                @Html.DisplayFor(model => user.PIN)
+                </td>
+                <td align="center">
+                @Html.CheckBoxFor(model => user.IsAdministrator, new { @disabled = "disabled" })
+                </td>
+                </tr>  
+        }
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="6" align="center">
+                @Html.PagedListPager(Model, page => Url.Action("EditUsers", new { page }))
+                Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount.
+            </td>
+        </tr>
+    </table>
+    </div>
+}

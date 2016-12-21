@@ -1,0 +1,69 @@
+﻿@using WWW = BlueBit.HR.Docs.WWW;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Dokumenty HR - @ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+           <p align="center"><img src="~/Images/logo.jpg" /></p>
+           <div class="content-wrapper">
+                @{
+                    var app = WWW.MvcApplication.GetAppInstance();
+                    <section id="login">
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            var info = app.GetUserInfo();
+                            var isLog = info.Item2.HasValue;
+                            var isAdmin = isLog && info.Item2.Value;
+                            var dtLog = isLog ? info.Item3.Value : DateTime.Now;
+                                    
+                            if (isLog)
+                            {
+                                <p>Witaj <b>@Html.Encode(info.Item1)</b>, jesteś <b>@Html.Encode(isAdmin ? "administratorem":"pracownikiem")</b>. Zalogowałeś się o <b>@Html.Encode(dtLog)</b> .</p>
+                            }
+                            else
+                            {
+                                <p>Witaj <b>@Html.Encode(info.Item1)</b>, nie podałeś jeszcze PIN…</p>
+                            }
+                        }
+                    </section>
+                    if (app.IsUserAuthenticated())
+                    {
+                        <nav>
+                            <ul id="menu">
+                                <li>@Html.ActionLink("Twoje dokumenty", "Index", "Documents")</li>
+                                <li>@Html.ActionLink("Administracja", "Index", "Administration")</li>
+                                <li>@Html.ActionLink("Wyloguj", "LogOut", "Home")</li>
+                            </ul>
+                        </nav>
+                    }
+                }
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>Sesja: @app.SessionID</p>
+                </div>
+                <div class="float-right">
+                    <p>BlueBit.HR.Docs #1.0, wykonane w 2013 dla <a href="http://www.ilf.com">ILF</a> przez <a href="mailto:tomasz.orynski@gmail.com">BLUEBIT</a>.</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

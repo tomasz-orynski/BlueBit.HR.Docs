@@ -1,0 +1,49 @@
+﻿@using BL = BlueBit.HR.Docs.BL;
+@using WWW = BlueBit.HR.Docs.WWW;
+@model WWW.Models.Administration.UserData
+
+@{
+    ViewBag.Title = "Edycja użytkownika...";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Edycja konta użytkownika…</h2>
+                <br />
+                <h3>Wprowadź dane użytkownika, a następnie potwierdź je.</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+@Html.ValidationSummary()
+@using (Html.BeginForm("EditUser", "Administration", FormMethod.Post))
+{
+    <fieldset>
+    <p>
+    @Html.LabelFor(m => m.Identifier, new { @class = "control-label" })
+    @Html.TextBoxFor(m => m.Identifier, new { @readonly ="true" })
+    @Html.ValidationMessageFor(m => m.Identifier, "*")
+    </p>
+    <p>
+    @Html.LabelFor(m => m.PESEL, new { @class = "control-label" })
+    @Html.TextBoxFor(m => m.PESEL, new { @style = "width:120px", @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_PESEL })
+    @Html.ValidationMessageFor(m => m.PESEL, "*")
+    </p>
+    <p>
+    @Html.LabelFor(m => m.PIN, new { @class = "control-label" })
+    @Html.TextBoxFor(m => m.PIN, new { @maxlength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX })
+    @Html.ValidationMessageFor(m => m.PIN, "*")
+    </p>
+    <p>
+    @Html.LabelFor(m => m.IsAdministrator, new { @class = "control-label" })
+    @Html.CheckBoxFor(m => m.IsAdministrator)
+    @Html.ValidationMessageFor(m => m.IsAdministrator, "*")
+    </p>
+    <p>&nbsp;</p>
+    <p>
+    <input type="submit" value="Zatwierdź" />
+    </p>
+    </fieldset>
+}

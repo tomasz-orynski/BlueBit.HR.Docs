@@ -1,0 +1,42 @@
+﻿@using WWW = BlueBit.HR.Docs.WWW;
+@{
+    ViewBag.Title = "Administracja";
+    var app = WWW.MvcApplication.GetAppInstance();
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>To jest strona administracyjna.</h2>
+                <br />
+                <h3>Wybierz jedną z poniższych czynności możliwych do wykonania.</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+<ol class="round">
+    <li class="one">
+        <h5>Zmiana kodu PIN</h5>
+        Tą akcją możesz zmienić swój kod PIN. Aby to zrobić będziesz musiał podać obecny kod PIN, a następnie podać nowy i potwierdzić wprowdzająć go raz jeszcze.
+        <br />
+        @Html.ActionLink("Zmień kod PIN…", "ChangePIN")
+    </li>
+
+    @if(app.IsUserAdmin())
+    {
+    <li class="two">
+        <h5>Ładowanie pliku ZIP z danymi</h5>
+        Tą akcją można załadować plik z danymi w formacie ZIP. Struktura pliku ZIP powina składać się z katalogów rocznych, podkatalogów miesięcznych i zawierać pliki PDF (o rozszerzeniu ".pdf") mających w nazwie PESEL pracownika.
+        <br />
+        @Html.ActionLink("Załaduj plik ZIP z danymi…", "LoadData")
+    </li>
+
+    <li class="three">
+        <h5>Edycja użytkowników systemu</h5>
+        Tą akcją można zdefiniować, którzy pracownicy będą mieli dostęp do systemu, a także wprowadzić ich podstawowe dane takie jak PESEL i początkowy kod PIN.
+        <br />
+        @Html.ActionLink("Edycja użytkowników…", "EditUsers")
+    </li>
+    }
+</ol>
