@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.ComponentModel.DataAnnotations;
 
 namespace BlueBit.HR.Docs.WWW.Models

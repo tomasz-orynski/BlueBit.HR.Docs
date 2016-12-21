@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using BL = BlueBit.HR.Docs.BL;
-using WWW = BlueBit.HR.Docs.WWW;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlueBit.HR.Docs.WWW.Models.Administration
 {
@@ -11,8 +7,7 @@ namespace BlueBit.HR.Docs.WWW.Models.Administration
     {
         [Required]
         [Display(Name = "Identyfikator:")]
-        [MinLength(1)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_IDENTIFIER)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_IDENTIFIER, MinimumLength = 1)]
         public string Identifier { get { return SourceEnity.Identifier; } set { SourceEnity.Identifier = value; } }
 
         //[Required]
@@ -21,15 +16,13 @@ namespace BlueBit.HR.Docs.WWW.Models.Administration
 
         [Required]
         [Display(Name = "PESEL:")]
-        [MinLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PESEL)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PESEL)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PESEL, MinimumLength = BL.DataLayer.Cfg.Defines.FLD_LEN_PESEL)]
         [HasOnlyDigits]
         public string PESEL { get { return SourceEnity.PESEL; } set { SourceEnity.PESEL = value; } }
 
         [Required]
         [Display(Name = "Kod PIN:")]
-        [MinLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX, MinimumLength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
         [HasOnlyDigits]
         public string PIN { get { return SourceEnity.PIN; } set { SourceEnity.PIN = value; } }
 

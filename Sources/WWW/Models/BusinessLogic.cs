@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
-using BL = BlueBit.HR.Docs.BL;
-using WWW = BlueBit.HR.Docs.WWW;
 using BlueBit.HR.Docs.BL.BusinessLayer.Extensions;
 
 namespace BlueBit.HR.Docs.WWW.Models

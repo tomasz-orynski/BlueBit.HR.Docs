@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.DirectoryServices;
 using NHibernate;
-using NHibernate.Cfg;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using System.Configuration;
@@ -35,6 +34,7 @@ namespace BlueBit.HR.Docs.BL.DataLayer.Cfg
         private static readonly IList<Item> items = new List<Item>() 
         {
             Item.Create<Entities.Employee,                          Mappings.EmployeeMap>                       ("T_Employees"),
+            Item.Create<Entities.EmployeeExtInfo,                   Mappings.EmployeeExtInfoMap>                ("V_EmployeeExtInfos"),
             Item.Create<Entities.DocumentWithData,                  Mappings.DocumentWithDataMap>               ("T_Documents"),
             Item.Create<Entities.DocumentWithoutDataAndLastVer,     Mappings.DocumentWithoutDataAndLastVerMap>  ("V_DocumentsLastVer"),
             Item.Create<Entities.DocumentsLoad,                     Mappings.DocumentsLoadMap>                  ("T_DocumentsLoads"),

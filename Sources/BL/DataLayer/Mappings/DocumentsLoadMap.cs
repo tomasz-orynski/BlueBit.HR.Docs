@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BlueBit.HR.Docs.BL.DataLayer.Mappings
+﻿namespace BlueBit.HR.Docs.BL.DataLayer.Mappings
 {
     public class DocumentsLoadMap : Commons.ObjectInDBWithIDMap<Entities.DocumentsLoad>
     {

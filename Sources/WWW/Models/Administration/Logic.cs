@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BL = BlueBit.HR.Docs.BL;
 using BlueBit.HR.Docs.BL.BusinessLayer.Extensions;
 
 namespace BlueBit.HR.Docs.WWW.Models.Administration

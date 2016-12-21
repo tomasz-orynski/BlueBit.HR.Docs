@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataLayer = BlueBit.HR.Docs.BL.DataLayer;
 
 namespace BlueBit.HR.Docs.BL.Tests
 {
     [TestClass]
-    public class UT_DataLayer
+    public class UT_DataLayer :
+        UT_Base
     {
         [TestMethod]
         public void TestMethod_LoadData()

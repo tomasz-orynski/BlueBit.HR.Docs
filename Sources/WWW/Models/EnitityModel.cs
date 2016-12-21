@@ -1,9 +1,5 @@
-﻿using System;
-using System.Web;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Contracts;
-using BL = BlueBit.HR.Docs.BL;
 
 namespace BlueBit.HR.Docs.WWW.Models
 {

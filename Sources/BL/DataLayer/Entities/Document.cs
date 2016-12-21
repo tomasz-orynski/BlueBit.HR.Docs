@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BlueBit.HR.Docs.BL.DataLayer.Entities
+﻿namespace BlueBit.HR.Docs.BL.DataLayer.Entities
 {
     public interface IDocument :
         Commons.IObjectInDBWithID

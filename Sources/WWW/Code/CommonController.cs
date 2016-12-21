@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using BL = BlueBit.HR.Docs.BL;
 using BlueBit.HR.Docs.BL.Diagnostics;
 
 namespace BlueBit.HR.Docs.WWW.Code

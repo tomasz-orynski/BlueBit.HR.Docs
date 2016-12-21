@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Linq;
-using BL = BlueBit.HR.Docs.BL;
-using WWW = BlueBit.HR.Docs.WWW;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlueBit.HR.Docs.WWW.Models.Administration
 {
@@ -13,24 +8,21 @@ namespace BlueBit.HR.Docs.WWW.Models.Administration
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Obecny PIN:")]
-        [MinLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX, MinimumLength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
         [HasOnlyDigits]
         public string ActualPIN { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Nowy PIN:")]
-        [MinLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX, MinimumLength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
         [HasOnlyDigits]
         public string NewPIN { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź PIN:")]
-        [MinLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX, MinimumLength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
         [HasOnlyDigits]
         public string ConfirmPIN { get; set; }
 

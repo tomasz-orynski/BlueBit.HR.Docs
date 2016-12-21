@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataLayer = BlueBit.HR.Docs.BL.DataLayer;
-using BusinessLayer = BlueBit.HR.Docs.BL.BusinessLayer;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BlueBit.HR.Docs.BL.BusinessLayer.Extensions;
 
 namespace BlueBit.HR.Docs.BL.Tests
 {
     [TestClass]
-    public class UT_BusinessLayer
+    public class UT_BusinessLayer :
+        UT_Base
     {
         [TestMethod]
         public void TestMethod_LoadZipService()
@@ -18,7 +15,7 @@ namespace BlueBit.HR.Docs.BL.Tests
                     System.IO.Path.GetDirectoryName(typeof(UT_BusinessLayer).Assembly.Location), 
                     @"..\..\..\_Data_\Data.zip"));
 
-            using (var businessCtx = new BusinessLayer.BusinessContext(e => e.Identifier == @"WAR-VTORYNSKI\Tomasz" && e.PIN == "1234"))
+            using (var businessCtx = new BusinessLayer.BusinessContext(e => e.Identifier == Consts.EmployeeIdentifier && e.PIN == Consts.EmployeePIN))
                 businessCtx.DoInTransaction(transaction => {
 
                     using (var service = 
@@ -34,7 +31,7 @@ namespace BlueBit.HR.Docs.BL.Tests
         [TestMethod]
         public void TestMethod_GetUsersService()
         {
-            using (var businessCtx = new BusinessLayer.BusinessContext(e => e.Identifier == @"WAR-VTORYNSKI\Tomasz" && e.PIN == "1234"))
+            using (var businessCtx = new BusinessLayer.BusinessContext(e => e.Identifier == Consts.EmployeeIdentifier && e.PIN == Consts.EmployeePIN))
                 businessCtx.DoInTransaction(transaction =>
                 {
                     using (var service =

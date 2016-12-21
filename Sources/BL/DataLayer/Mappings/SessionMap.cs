@@ -1,6 +1,4 @@
-﻿using FluentNHibernate.Mapping;
-
-namespace BlueBit.HR.Docs.BL.DataLayer.Mappings
+﻿namespace BlueBit.HR.Docs.BL.DataLayer.Mappings
 {
     public class SessionMap : Commons.ObjectInDBWithIDMap<Entities.Session>
     {

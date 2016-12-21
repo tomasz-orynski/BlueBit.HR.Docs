@@ -1,0 +1,108 @@
+﻿@using WWW = BlueBit.HR.Docs.WWW;
+@using BL = BlueBit.HR.Docs.BL;
+@model BL.DataLayer.Entities.EmployeeExtInfo
+@{
+    ViewBag.Title = "Moje dokumenty";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>To są twoje dane HR.</h3>
+            </hgroup>
+        </div>
+    </section>
+}
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <p>
+            @Html.LabelFor(m => m.PESEL, "PESEL", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.PESEL)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.NIP, "NIP", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.NIP)
+        </p>
+
+        <p>
+            @Html.LabelFor(m => m.IdentCardExpireDate, "Data ważności dowodu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.IdentCardExpireDate)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.PassportExpireDate, "Data ważności paszportu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.PassportExpireDate)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.TaxOffice, "Urząd skarbowy", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.TaxOffice)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.PhoneNo, "Numer telefonu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.PhoneNo)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.BankAccount, "Numer rachunku bankowego", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.BankAccount)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressCity, "Adres zamieszkania - miasto", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressCity)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressStreet, "Adres zamieszkania - ulica", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressStreet)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressHouseNo, "Adres zamieszkania - nr domu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressHouseNo)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressApartNo, "Adres zamieszkania - nr lokalu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressApartNo)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressRegCity, "Adres zameldowania - miasto", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressRegCity)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressRegStreet, "Adres zameldowania - ulica", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressRegStreet)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressRegHouseNo, "Adres zameldowania - nr domu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressRegHouseNo)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.AddressRegApartNo, "Adres zameldowania - nr lokalu", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.AddressRegApartNo)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LeavePrev, "Urlop zaległy", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.LeavePrev)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LeaveOwing, "Urlop należny", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.LeaveOwing)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LeaveUse, "Urlop wykorzystany", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.LeaveUse)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LeaveRemaining, "Urlop pozostały", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.LeaveRemaining)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LeaveCare, "Urlop opiekuńczy", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.LeaveCare)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.ExamExpireDate, "Data ważności badań", new { @class = "control-label" })
+            @Html.DisplayTextFor(m => m.ExamExpireDate)
+        </p>
+</fieldset>
+}

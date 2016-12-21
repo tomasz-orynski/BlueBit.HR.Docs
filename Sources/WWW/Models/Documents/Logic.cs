@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BL = BlueBit.HR.Docs.BL;
 using BlueBit.HR.Docs.BL.BusinessLayer.Extensions;
 
 namespace BlueBit.HR.Docs.WWW.Models.Documents
@@ -10,6 +7,13 @@ namespace BlueBit.HR.Docs.WWW.Models.Documents
     public class Logic :
         BusinessLogicBase
     {
+        public BL.DataLayer.Entities.EmployeeExtInfo GetEmployeeExtInfo()
+        {
+            var session = BusinessContext.OpenDBSession();
+            return session.QueryOver<BL.DataLayer.Entities.EmployeeExtInfo>().Where(_ => _.ID == BusinessContext.Session.Employee.ID).SingleOrDefault();
+        }
+
+
         public IList<BL.DataLayer.Entities.DocumentWithoutDataAndLastVer> GetDocuments()
         {
             var session = BusinessContext.OpenDBSession();

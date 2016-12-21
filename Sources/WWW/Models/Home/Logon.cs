@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using BL = BlueBit.HR.Docs.BL;
-using WWW = BlueBit.HR.Docs.WWW;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlueBit.HR.Docs.WWW.Models.Home
 {
@@ -11,8 +7,7 @@ namespace BlueBit.HR.Docs.WWW.Models.Home
     {
         [Required]
         [Display(Name = "Kod PIN:")]
-        [MinLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
-        [MaxLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX)]
+        [StringLength(BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MAX, MinimumLength = BL.DataLayer.Cfg.Defines.FLD_LEN_PIN_MIN)]
         [HasOnlyDigits]
         public string PIN { get; set; }
 

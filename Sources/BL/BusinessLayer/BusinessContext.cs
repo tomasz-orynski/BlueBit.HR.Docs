@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Threading;
 
 namespace BlueBit.HR.Docs.BL.BusinessLayer
 {

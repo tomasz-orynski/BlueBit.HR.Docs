@@ -2,7 +2,6 @@
 using System.Diagnostics.Contracts;
 using System.Collections.Generic;
 using System.Linq;
-using DataLayer = BlueBit.HR.Docs.BL.DataLayer;
 
 namespace BlueBit.HR.Docs.BL.BusinessLayer.Services.DataLoad
 {
